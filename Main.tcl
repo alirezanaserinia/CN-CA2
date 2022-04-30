@@ -10,8 +10,8 @@ set val(ifqlen)		50						;	# max packet in ifq
 set val(ll)			LL						;	# link layer type
 set val(ant)		Antenna/OmniAntenna 	;	# antenna model
 set val(rp)    		AODV  					;	# ad-hoc routing protocol
-set val(x)			800						;	#Fixing the co-ordinate of simutaion area
-set val(y)			800						;
+set val(x)			800						;	# X dimension of topography
+set val(y)			800						;	# Y dimension of topography
 set val(nn)			9						;	# number of mobilenodes	
 set val(stop)		102.0					;	# simulation time
      
@@ -32,7 +32,7 @@ $ns_ trace-all $tracefd
 ##################################################################
 #	        Creating NAM Trace files			 #
 ##################################################################
-
+#Nam File Creation nam – network animator
 set namtrace [open Main.nam w]
 $ns_ namtrace-all-wireless $namtrace $val(x) $val(y)
 
@@ -41,17 +41,11 @@ set prop	[new $val(prop)]
 set topo	[new Topography]
 $topo load_flatgrid $val(x) $val(y)
 
+# general operational descriptor - storing the hop details in the network
 create-god $val(nn)
 
 ##################################################################
-#	                 802.11b Settings			 #
-##################################################################
-
-#Phy/WirelessPhy set freq_ 2.4e+9
-#Mac/802_11 set dataRate_ 11.0e6 
-
-##################################################################
-#	                 802.11g Settings			 #
+#	                 802.11 Settings			 #
 ##################################################################
 
 Phy/WirelessPhy set freq_ 	2.4e+9
@@ -119,13 +113,6 @@ $node_(8) label "L"
 # set color index
 $ns_ color 0 blue
 $ns_ color 1 red
-$ns_ color 2 green
-$ns_ color 3 red
-$ns_ color 4 brown
-$ns_ color 5 tan
-$ns_ color 6 gold
-$ns_ color 7 black
-$ns_ color 8 pink
 
 
 ##################################################################
