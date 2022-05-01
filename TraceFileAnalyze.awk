@@ -17,3 +17,5 @@ source_port_number = $15
 destination_ip_address = $16
 
 destination_port_number = $17
+
+time_to_live = $18
