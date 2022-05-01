@@ -9,7 +9,7 @@ set val(ifq)		Queue/DropTail/PriQueue	;	# interface queue type
 set val(ifqlen)		50						;	# max packet in ifq	
 set val(ll)			LL						;	# link layer type
 set val(ant)		Antenna/OmniAntenna 	;	# antenna model
-set val(rp)    		AODV  					;	# ad-hoc routing protocol
+set val(rp)    		AODV  					;	# Ad Hoc On-Demand Distance Vector routing protocol
 set val(x)			800						;	# X dimension of topography
 set val(y)			800						;	# Y dimension of topography
 set val(nn)			9						;	# number of mobilenodes	
@@ -27,6 +27,7 @@ set ns_		[new Simulator]
 ##################################################################
 
 set tracefd	[open Main.tr w]
+#$ns_ use-newtrace
 $ns_ trace-all $tracefd
 
 ##################################################################
@@ -85,7 +86,7 @@ $ns_ node-config -adhocRouting $val(rp) \
 		-wiredRouting OFF \
 		-agentTrace ON \
 		-routerTrace ON \
-		-macTrace ON \
+		-macTrace OFF \
 		-IncomingErrProc UniformErr
 
 
@@ -181,7 +182,6 @@ $ns_ at 0.2 "$node_(8) setdest 750.0 122.0 240.0"
 ##################################################################
 #		Simulation Termination				 #
 ##################################################################
-
 
 #Define a 'finish' procedure
 proc finish {} {
