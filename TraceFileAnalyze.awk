@@ -11,3 +11,9 @@ destination_MAC_address = $10
 source_MAC_address = $11
 Ethernet_packet_type = $12
 blank = $13
+source_ip_address = $14
+
+source_port_number = $15
+destination_ip_address = $16
+
+destination_port_number = $17
