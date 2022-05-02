@@ -8,7 +8,7 @@ class traceEvent:
         self.node_id = eventDetailList[2]
         self.trace_level = eventDetailList[3]
         self.reason = eventDetailList[4]
-        self.packet_unique_id = eventDetailList[5]
+        self.packet_unique_id = int(eventDetailList[5])
         self.payload_type = eventDetailList[6]
         self.packet_size = int(eventDetailList[7])
         self.time_to_send_data = eventDetailList[8]
