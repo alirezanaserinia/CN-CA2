@@ -20,10 +20,11 @@ class traceEvent:
         self.time_to_live = eventDetailList[17]
 
 
-traceFile=  open('try1.tr')
-traceEvents= list()
+traceFile =  open('Main.tr')
+traceEvents = list()
 for line in traceFile:
-    traceEvents.append(traceEvent(line.split()))
+    if len(line.split()) == 18:
+        traceEvents.append(traceEvent(line.split()))
 
 print("Event type: ",traceEvents[0].event_type)
 print("Event time: ",traceEvents[0].time)
