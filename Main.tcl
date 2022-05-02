@@ -54,7 +54,7 @@ Phy/WirelessPhy set freq_ 	2.4e+9
 Mac/802_11 set basicRate_ 	0
 Mac/802_11 set dataRate_ 	0 
 
-Mac/802_11 set bandwidth_ 	1.5Mb
+Mac/802_11 set bandwidth_ 	155Mb
 #1.5   Mbps
 #55.0  Mbps
 #155.0 Mbps
@@ -67,7 +67,7 @@ Mac/802_11 set RTSThreshold_ 3000
 proc UniformErr {} {
 set err [new ErrorModel]
 $err unit packet
-$err set rate_ 0.00001
+$err set rate_ 0.0000054
 $err ranvar [new RandomVariable/Uniform]
 $err drop-target [new Agent/Null]
 return $err

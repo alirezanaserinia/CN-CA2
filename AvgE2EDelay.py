@@ -6,10 +6,12 @@ tr_list = parser.traceEvents
 seqno = -1 
 count = 0
 
-startTimes = [-1] * 30000
-endTimes = [-1] * 30000
-delay = [-1] * 30000
 tr_len = len(tr_list)
+
+startTimes = [-1] * tr_len
+endTimes = [-1] * tr_len
+delay = [-1] * tr_len
+
 
 for i in range(tr_len):
     if(tr_list[i].trace_level == "AGT" and tr_list[i].event_type == "s" and seqno < tr_list[i].packet_unique_id):
@@ -35,4 +37,4 @@ for i in range(seqno+1):
         
 e2e_delay = e2e_delays/count   
 
-print("Average End-to-End Delay : ", round(e2e_delay * 1000, 2), " ms")
+print("Average End-to-End Delay : ", round(e2e_delay * 1000, 3), " ms")
