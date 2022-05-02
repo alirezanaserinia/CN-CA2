@@ -1,2 +1,9 @@
 Main.tr
 Main.nam
+
+
+graphgen.sh
+ThroughputGraph.txt
+ThrouputGraph.png
+thrptGraph1
+thrptGraphTCP.awk

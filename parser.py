@@ -1,13 +1,16 @@
 class traceEvent:
     def __init__(self,eventDetailList):
+        while len(eventDetailList)< 18:
+            eventDetailList.append("")
+
         self.event_type = eventDetailList[0]
-        self.time = eventDetailList[1]
+        self.time = float(eventDetailList[1])
         self.node_id = eventDetailList[2]
         self.trace_level = eventDetailList[3]
         self.reason = eventDetailList[4]
-        self.packet_unique_id = eventDetailList[5]
+        self.packet_unique_id = int(eventDetailList[5])
         self.payload_type = eventDetailList[6]
-        self.packet_size = eventDetailList[7]
+        self.packet_size = int(eventDetailList[7])
         self.time_to_send_data = eventDetailList[8]
         self.destination_MAC_address = eventDetailList[9]
         self.source_MAC_address = eventDetailList[10]
@@ -19,15 +22,38 @@ class traceEvent:
         self.destination_port_number = eventDetailList[16]
         self.time_to_live = eventDetailList[17]
 
+def advancedSplitter(string):
+    splitedStringList= list()
+    substr= str()
+    inprogress= False
+    endDelimiter= ' '
+    for char in string:
+        if char== endDelimiter:
+            if substr!= "":
+                splitedStringList.append(substr)
+            substr= ""
+            endDelimiter= ' '
+            inprogress= False
+        elif char== '[' and not inprogress:
+            endDelimiter= ']'
+            inprogress= True
+        elif char== '(' and not inprogress:
+            endDelimiter= ')'
+            inprogress=True
+        elif char== ' ' and not inprogress:
+            endDelimiter= ' '
+            inprogress= True
+        else:
+            if char!= '\n':
+                substr+= char
+
+    if substr!= "":
+        splitedStringList.append(substr)
+    return splitedStringList
+
 
 traceFile =  open('Main.tr')
 traceEvents = list()
 for line in traceFile:
-    if len(line.split()) == 18:
-        traceEvents.append(traceEvent(line.split()))
-
-print("Event type: ",traceEvents[0].event_type)
-print("Event time: ",traceEvents[0].time)
-print("Event nodeId: ",traceEvents[0].node_id)
-print("Event traceLevel: ",traceEvents[0].trace_level)
-print("Event reason: ",traceEvents[0].reason)
+    if line.split()[0]!= 'M':
+        traceEvents.append(traceEvent(advancedSplitter(line)))
