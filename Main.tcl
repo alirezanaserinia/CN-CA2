@@ -54,7 +54,7 @@ Phy/WirelessPhy set freq_ 	2.4e+9
 Mac/802_11 set basicRate_ 	0
 Mac/802_11 set dataRate_ 	0 
 
-Mac/802_11 set bandwidth_ 	1.5Mb
+Mac/802_11 set bandwidth_ 	55Mb
 #1.5   Mbps
 #55.0  Mbps
 #155.0 Mbps
@@ -86,7 +86,7 @@ $ns_ node-config -adhocRouting $val(rp) \
 		-wiredRouting OFF \
 		-agentTrace ON \
 		-routerTrace ON \
-		-macTrace OFF \
+		-macTrace ON \
 		-IncomingErrProc UniformErr
 
 
@@ -121,7 +121,7 @@ $ns_ color 1 red
 ##################################################################
 
 for {set i 0} {$i < $val(nn)} {incr i} {
-	$ns_ initial_node_pos $node_($i) 100
+	$ns_ initial_node_pos $node_($i) 50
 
 }
 
@@ -154,30 +154,44 @@ $ns_ at 0.2 "$node_(8) setdest 750.0 122.0 240.0"
 
 	set tcp0 [new Agent/TCP]
 	set tcp1 [new Agent/TCP]
+	set tcp2 [new Agent/TCP]
+	set tcp3 [new Agent/TCP]
 	set sink0 [new Agent/TCPSink]
 	set sink1 [new Agent/TCPSink]
+	set sink2 [new Agent/TCPSink]
+	set sink3 [new Agent/TCPSink]
 
 	$ns_ attach-agent $node_(0) $tcp0
-	$ns_ attach-agent $node_(3) $tcp1
+	$ns_ attach-agent $node_(0) $tcp1
+	$ns_ attach-agent $node_(3) $tcp2
+	$ns_ attach-agent $node_(3) $tcp3
 	$ns_ attach-agent $node_(7) $sink0
-	$ns_ attach-agent $node_(8) $sink1
+	$ns_ attach-agent $node_(7) $sink1
+	$ns_ attach-agent $node_(8) $sink2
+	$ns_ attach-agent $node_(8) $sink3
 	
 	set ftp0 [new Application/FTP]
 	$ftp0 attach-agent $tcp0
 	set ftp1 [new Application/FTP]
 	$ftp1 attach-agent $tcp1
+	set ftp2 [new Application/FTP]
+	$ftp2 attach-agent $tcp2
+	set ftp3 [new Application/FTP]
+	$ftp3 attach-agent $tcp3
 	
 	$ns_ connect $tcp0 $sink0
-#	$ns_ connect $tcp0 $sink1
-#	$ns_ connect $tcp1 $sink0
 	$ns_ connect $tcp1 $sink1
+	$ns_ connect $tcp2 $sink2
+	$ns_ connect $tcp3 $sink3
 	
 	$ns_ at 5.0 "$ftp0 start" 
-#	$ns_ at 7.5 "$ftp1 start"
-#	$ns_ at 8.5 "$ftp1 stop"
-	$ns_ at 12.5 "$ftp1 start"
-	$ns_ at 100.0 "$ftp0 stop"	
-	$ns_ at 96.0 "$ftp1 stop"
+	$ns_ at 9.5 "$ftp1 start"
+	$ns_ at 15.0 "$ftp2 start"
+	$ns_ at 20.5 "$ftp3 start"
+	$ns_ at 85.0 "$ftp1 stop"	
+	$ns_ at 91.0 "$ftp2 stop"
+	$ns_ at 96.0 "$ftp3 stop"
+	$ns_ at 100.0 "$ftp0 stop"
 
 ##################################################################
 #		Simulation Termination				 #
