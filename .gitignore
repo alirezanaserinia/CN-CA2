@@ -1,3 +1,10 @@
 Main.tr
 Main.nam
-Throughput.py
+
+
+graphgen.sh
+pdr.awk
+ThroughputGraph.txt
+ThrouputGraph.png
+thrptGraph1
+thrptGraphTCP.awk
