@@ -17,4 +17,4 @@ for i in range(tr_len-1):
 
 goodput = (recvdSize / (stopTime - startTime)) * 8 / 10**6
 
-print("Average Goodput :", round(goodput,2), "[Mbps]\t\t", " strat time :", round(startTime,2), "\t" " stop time :", round(stopTime,2))
+print("Average Goodput :", round(goodput,4), "[Mbps]\t\t", " strat time :", round(startTime,2), "\t" " stop time :", round(stopTime,2))

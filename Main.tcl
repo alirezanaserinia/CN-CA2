@@ -54,7 +54,7 @@ Phy/WirelessPhy set freq_ 	2.4e+9
 Mac/802_11 set basicRate_ 	0
 Mac/802_11 set dataRate_ 	0 
 
-Mac/802_11 set bandwidth_ 	55Mb
+Mac/802_11 set bandwidth_ 	1.5Mb
 #1.5   Mbps
 #55.0  Mbps
 #155.0 Mbps

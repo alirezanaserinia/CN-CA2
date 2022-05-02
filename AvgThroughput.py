@@ -17,4 +17,4 @@ for i in range(tr_len):
 
 throughput = (recvdSize / (stopTime - startTime)) * 8 / 10**6
 
-print("Average Throughput :", round(throughput,2), "[Mbps]\t\t", " strat time :", round(startTime,2), "\t" " stop time :", round(stopTime,2))
+print("Average Throughput :", round(throughput,4), "[Mbps]\t\t", " strat time :", round(startTime,2), "\t" " stop time :", round(stopTime,2))
