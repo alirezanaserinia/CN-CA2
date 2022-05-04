@@ -11,7 +11,7 @@ set val(ll)			LL						;	# link layer type
 set val(ant)		Antenna/OmniAntenna 	;	# antenna model
 set val(rp)    		AODV  					;	# Ad Hoc On-Demand Distance Vector routing protocol
 set val(x)			800						;	# X dimension of topography
-set val(y)			800						;	# Y dimension of topography
+set val(y)			550						;	# Y dimension of topography
 set val(nn)			9						;	# number of mobilenodes	
 set val(stop)		102.0					;	# simulation time
      
